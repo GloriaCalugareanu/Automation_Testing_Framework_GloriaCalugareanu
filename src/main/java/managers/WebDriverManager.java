@@ -18,10 +18,10 @@ public class WebDriverManager {
     private String browserType;
 
     private void initializeDriver() {
-        if (browserType.toUpperCase(Locale.ROOT).equals("Chrome")) {
+        if (browserType.toUpperCase(Locale.ROOT).equals("CHROME")) {
             System.setProperty("webdriver.chrome.driver","src/main/resources/Drivers/chromedriver.exe");
             activeWebDriver = new ChromeDriver();
-        } else if (browserType.toUpperCase(Locale.ROOT).equals( "FireFox")) {
+        } else if (browserType.toUpperCase(Locale.ROOT).equals( "FIREFOX")) {
             System.setProperty("webdriver.gecko.driver","src/main/resources/Drivers/geckodriver.exe");
             activeWebDriver = new FirefoxDriver();
         }else {
