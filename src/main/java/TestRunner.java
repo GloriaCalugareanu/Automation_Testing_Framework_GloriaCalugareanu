@@ -1,20 +1,25 @@
 import managers.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import pageobjects.HomePage;
+import pageobjects.Register;
+
 
 public class TestRunner {
     public static void main(String[] args) {
+        WebDriverManager webDriverManagerObiect = new WebDriverManager("Chrome");
+        webDriverManagerObiect.getActiveWebDriver().get("https://demo.opencart.com/");
 
-        WebDriverManager fireFoxDriverManager=new WebDriverManager("firefox");
-        fireFoxDriverManager.getActiveWebDriver().get("https://www.google.com/");
-        fireFoxDriverManager.getActiveWebDriver().close();
-        fireFoxDriverManager.getActiveWebDriver().quit();
+        HomePage homePage = new HomePage(webDriverManagerObiect.getActiveWebDriver());
+        homePage.navigateToRegisterPageViaHeader();
 
+        Register registerPage = new Register(webDriverManagerObiect.getActiveWebDriver());
+        registerPage.populateRegisterFormWithData("Charls", "Smith", "emailadres@gmail.com", "067717845", "HardPass123321", "HardPass123321");
+        registerPage.clickContinueBtn();
 
-        WebDriverManager webDriverManagerObject=new WebDriverManager("Chrome");
-        webDriverManagerObject.getActiveWebDriver().get("https://www.google.com/");
-        webDriverManagerObject.getActiveWebDriver().close();
-        webDriverManagerObject.getActiveWebDriver().quit();
+        registerPage.performSearchFor("Apple");
+        registerPage.clearSearchField();
+        registerPage.performSearchFor("Samsung");
 
+        webDriverManagerObiect.getActiveWebDriver().get("https://www.google.com/");
+        webDriverManagerObiect.getActiveWebDriver().close();
     }
 }
