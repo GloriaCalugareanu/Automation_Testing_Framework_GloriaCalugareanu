@@ -1,12 +1,12 @@
-package contextManagers;
+package utils;
 
 import managers.WebDriverManager;
 
 public class TestContext {
     private WebDriverManager webDriverManager;
-
-    public TestContext( ){
+    public  TestContext(){
         webDriverManager=new WebDriverManager("CHROME");
+
     }
 
     public WebDriverManager getWebDriverManager(){
