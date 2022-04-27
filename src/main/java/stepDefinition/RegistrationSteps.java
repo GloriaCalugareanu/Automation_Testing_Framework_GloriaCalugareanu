@@ -1,15 +1,15 @@
-package stepDefinition;
+package stepdefinitions;
 
-import pageobjects.Register;
+import pageobjects.RegisterPage;
 import utils.TestContext;
 
 public class RegistrationSteps {
 
     private TestContext context;
-    private Register registerPage;
+    private RegisterPage registerPage;
 
-    public RegistrationSteps(TestContext testContext){
-        context=testContext;
-        registerPage=new Register(context.getWebDriverManager().getActiveWebDriver());
+    public RegistrationSteps(TestContext testContext) {
+        context = testContext;
+        registerPage = new RegisterPage(context.getWebDriverManager().getDriverul());
     }
 }

@@ -1,25 +1,41 @@
 import managers.WebDriverManager;
-import pageobjects.HomePage;
-import pageobjects.Register;
-
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class TestRunner {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
         WebDriverManager webDriverManagerObiect = new WebDriverManager("Chrome");
-        webDriverManagerObiect.getActiveWebDriver().get("https://demo.opencart.com/");
+        webDriverManagerObiect.getDriverul().get("https://demo.opencart.com/");
 
-        HomePage homePage = new HomePage(webDriverManagerObiect.getActiveWebDriver());
-        homePage.navigateToRegisterPageViaHeader();
+        WebElement myAccountIcon = webDriverManagerObiect.getDriverul().findElement(By.xpath("//*[@id=\"top-links\"]/ul/li[2]/a/i"));
+        myAccountIcon.click();
 
-        Register registerPage = new Register(webDriverManagerObiect.getActiveWebDriver());
-        registerPage.populateRegisterFormWithData("Charls", "Smith", "emailadres@gmail.com", "067717845", "HardPass123321", "HardPass123321");
-        registerPage.clickContinueBtn();
+        WebElement registerBtn = webDriverManagerObiect.getDriverul().findElement(By.xpath("//*[@id=\"top-links\"]/ul/li[2]/ul/li[1]/a"));
+        registerBtn.click();
 
-        registerPage.performSearchFor("Apple");
-        registerPage.clearSearchField();
-        registerPage.performSearchFor("Samsung");
+        // Actiuni asupra paginii de Registration
+        WebElement firstNameInputField = webDriverManagerObiect.getDriverul().findElement(By.xpath("//*[@id=\"input-firstname\"]"));
+        WebElement lastNameInputField = webDriverManagerObiect.getDriverul().findElement(By.xpath("//*[@id=\"input-lastname\"]"));
+        WebElement emailInputField = webDriverManagerObiect.getDriverul().findElement(By.xpath("//*[@id=\"input-email\"]"));
+        WebElement phoneInputFIeld = webDriverManagerObiect.getDriverul().findElement(By.cssSelector("#input-telephone"));
+        WebElement passwordInput = webDriverManagerObiect.getDriverul().findElement(By.id("input-password"));
+        WebElement confirmPasswordInputField = webDriverManagerObiect.getDriverul().findElement(By.xpath("//*[@id=\"input-confirm\"]"));
+        WebElement continueBtn = webDriverManagerObiect.getDriverul().findElement(By.xpath("//*[@id=\"content\"]/form/div/div/input[2]"));
 
-        webDriverManagerObiect.getActiveWebDriver().get("https://www.google.com/");
-        webDriverManagerObiect.getActiveWebDriver().close();
+        firstNameInputField.sendKeys("Charls");
+        lastNameInputField.sendKeys("Smith");
+        emailInputField.sendKeys("emailderas@gmail.com");
+        phoneInputFIeld.sendKeys("067717171");
+        passwordInput.sendKeys("HardPass123321");
+        confirmPasswordInputField.sendKeys("ABC");
+        confirmPasswordInputField.clear();
+        confirmPasswordInputField.sendKeys("HardPass123321");
+
+
+        continueBtn.click();
+
+        webDriverManagerObiect.getDriverul().close();
+        webDriverManagerObiect.getDriverul().quit();
     }
 }

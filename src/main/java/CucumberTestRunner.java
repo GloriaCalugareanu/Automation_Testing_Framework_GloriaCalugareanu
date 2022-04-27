@@ -6,11 +6,10 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/main/java/features",
-        glue="stepDefinition",
-        snippets= SnippetType.CAMELCASE,
-        tags = {"@ExecutaAcestTC"},
-        plugin={"pretty", "html:target/cucumber-reports"}
+        glue = "stepdefinitions",
+        snippets = SnippetType.CAMELCASE,
+        tags = {},
+        plugin = {"pretty", "html:target/cucumberreports"}
 )
-
 public class CucumberTestRunner {
 }

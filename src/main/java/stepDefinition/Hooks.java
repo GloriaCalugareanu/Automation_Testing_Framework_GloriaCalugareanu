@@ -1,24 +1,25 @@
-package stepDefinition;
+package stepdefinitions;
 
 import cucumber.api.java.After;
-import org.junit.Before;
+import cucumber.api.java.Before;
 import utils.TestContext;
 
 public class Hooks {
+
   private TestContext testContext;
-  public  Hooks(TestContext context){
-      testContext=context;
+
+  public Hooks(TestContext context) {
+    testContext = context;
   }
 
   @Before
-    public void setUpBeforeEachTest(){
-      testContext.getWebDriverManager().getActiveWebDriver();
-
+  public void setUpBeforeEachTest() {
+    testContext.getWebDriverManager().getDriverul();
   }
+
   @After
-    public void tearDownAfterEachTest(){
-      testContext.getWebDriverManager().getActiveWebDriver().close();
-      testContext.getWebDriverManager().getActiveWebDriver().quit();
+  public void tearDownActionsAfterEachTest() {
+    testContext.getWebDriverManager().getDriverul().close();
+    testContext.getWebDriverManager().getDriverul().quit();
   }
-
 }
