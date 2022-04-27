@@ -1,6 +1,6 @@
 import managers.WebDriverManager;
 import pageobjects.HomePage;
-import pageobjects.Register;
+import pageobjects.RegisterPage;
 
 
 public class TestRunner {
@@ -11,7 +11,7 @@ public class TestRunner {
         HomePage homePage = new HomePage(webDriverManagerObiect.getActiveWebDriver());
         homePage.navigateToRegisterPageViaHeader();
 
-        Register registerPage = new Register(webDriverManagerObiect.getActiveWebDriver());
+        RegisterPage registerPage = new RegisterPage(webDriverManagerObiect.getActiveWebDriver());
         registerPage.populateRegisterFormWithData("Charls", "Smith", "emailadres@gmail.com", "067717845", "HardPass123321", "HardPass123321");
         registerPage.clickContinueBtn();
 

@@ -1,10 +1,9 @@
 import managers.WebDriverManager;
-import net.jodah.failsafe.internal.util.Assert;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pageobjects.HomePage;
-import pageobjects.Register;
+import pageobjects.RegisterPage;
 
 
 public class TestJunitRunner {
@@ -40,7 +39,7 @@ public class TestJunitRunner {
         HomePage homePage = new HomePage(webDriverManagerObiect.getActiveWebDriver());
         homePage.navigateToRegisterPageViaHeader();
 
-        Register registerPage = new Register(webDriverManagerObiect.getActiveWebDriver());
+        RegisterPage registerPage = new RegisterPage(webDriverManagerObiect.getActiveWebDriver());
         registerPage.populateRegisterFormWithData("Tacic", "SpangeBob", "spangebob@gmail.com", "78989878798", "Creative123", "Creative123");
         registerPage.clickContinueBtn();
 
