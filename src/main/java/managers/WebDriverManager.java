@@ -19,13 +19,13 @@ public class WebDriverManager {
 
     private void initializeDriver() {
         if (browserType.toUpperCase(Locale.ROOT).equals("CHROME")) {
-            System.setProperty("webdriver.chrome.driver","src/main/resources/Drivers/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver","src/main/resources/drivers/chromedriver.exe");
             activeWebDriver = new ChromeDriver();
         } else if (browserType.toUpperCase(Locale.ROOT).equals( "FIREFOX")) {
-            System.setProperty("webdriver.gecko.driver","src/main/resources/Drivers/geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver","src/main/resources/drivers/geckodriver.exe");
             activeWebDriver = new FirefoxDriver();
         }else {
-            System.out.println("Nu esista un astfel de browser");
+            System.out.println("Nu exista un astfel de browser");
         }
     }
 

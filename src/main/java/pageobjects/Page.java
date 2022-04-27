@@ -1,12 +1,18 @@
 package pageobjects;
 
+import managers.PropertiesManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.lang.reflect.Method;
+
 public abstract class Page {
+    protected WebDriver driver;
+
     public Page(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -22,6 +28,9 @@ public abstract class Page {
     @FindBy(xpath = "//*[@id=\"search\"]/span/button")
     private WebElement searchBtn;
 
+    protected final String BASE_URL = PropertiesManager.getBaseURL();
+
+
     public void navigateToRegisterPageViaHeader() {
         myAccountIcon.click();
         registerBtn.click();
@@ -34,5 +43,39 @@ public abstract class Page {
 
     public void clearSearchField() {
         searchInputField.clear();
+
+
+    }
+
+    public static void navigateToPage(String pageName, WebDriver driver) {
+        Method definedMethod;
+        try {
+            definedMethod = Class.forName("pageobjects." + pageName).getMethod("goToPage");
+            definedMethod.invoke(Class.forName("pageobjects." + pageName).getConstructor(WebDriver.class).newInstance(driver));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String pageContainsCorrectEndpoint(String pageName, WebDriver driver) {
+        Method definedMethod;
+        try {
+            definedMethod = Class.forName("pageobjects." + pageName).getMethod("getENDPOINT");
+            return (String) definedMethod.invoke(Class.forName("pageobjects." + pageName).getConstructor(WebDriver.class).newInstance(driver));
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        throw new RuntimeException("Problems occured during Enpoint extraction!");
+    }
+
+    public static String pageContainsCurrentEndpoint(String pageName, WebDriver webDriver) throws ClassNotFoundException, NoSuchMethodException {
+        Method definedMethod;
+        try {
+            definedMethod = Class.forName("pageobjects" + pageName).getMethod("getENDPOINT");
+            return (String) definedMethod.invoke(Class.forName("pageobjects." + pageName).getConstructor(WebDriver.class).newInstance(webDriver));
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+        throw new RuntimeException("Problems during Endpoint extraction");
     }
 }
